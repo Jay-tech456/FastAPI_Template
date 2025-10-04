@@ -2,10 +2,10 @@
 
 # Ensure that you have the right Conda Environment Running on your local machine
 
-# conda create --name fast python = 3.8 
+# conda create --name fast python = 3.11.     # Note: Your python version may vary 
 # conda activate fast 
 # pip install -r requirements.txt 
-# python main.py 
+# uvicorn main:app --reload 
 
 
 fastapi
