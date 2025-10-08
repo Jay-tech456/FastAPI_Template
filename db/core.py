@@ -1,12 +1,12 @@
 from typing import Optional
-from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import create_engine, ForeignKey, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column
 import os
 from dotenv import load_dotenv
 
 load_dotenv() 
-DATABASE_URL = os.getenv("DATABASE_URL") or ""
+DATABASE_URL = os.getenv("POSTGRES_URL")
 
 
 class NotFoundError(Exception):
@@ -31,6 +31,15 @@ class DBAutomation(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     item_id: Mapped[int] = mapped_column(ForeignKey("items.id"))
     code: Mapped[str]
+
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    email = Column(String, unique=True, index=True)
 
 
 
